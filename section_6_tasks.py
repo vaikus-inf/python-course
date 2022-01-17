@@ -1,4 +1,4 @@
-# Задание № 1
+# Задача № 1
 from distutils.command.build_scripts import first_line_re
 
 
@@ -16,7 +16,7 @@ print(a1.last_name)
 print(a1.full_name)
 print(a1.initials)
 
-# Задание № 2
+# Задача № 2
 class Calculator:
     
     def add(self, n1, n2):
@@ -37,7 +37,7 @@ print(calculator.subtract(10, 5))
 print(calculator.multiply(10, 5))
 print(calculator.divide(10, 5))
 
-# Задание № 3
+# Задача № 3
 class Employee:
     
     def __init__(self, first_name, last_name, salary):
@@ -62,7 +62,7 @@ emp2 = Employee.from_string('John-Smith-55000')
 print(emp2.first_name)
 print(emp2.salary)
 
-# Задание № 4
+# Задача № 4
 class Pizza:
     order = 0
 
@@ -89,3 +89,50 @@ print(p1.ingredients)
 print(p2.ingredients)
 print(p1.order_number)
 print(p2.order_number)
+
+# Задача № 5
+import math
+
+class Circle:
+    
+    def __init__(self, radius):
+        self.radius = radius    
+    
+    def get_area(self):
+        return math.pi * math.pow(self.radius, 2)
+    
+    def get_perimeter(self):
+        return 2 * math.pi * self.radius
+
+circle = Circle(10)
+area = circle.get_area()
+perimeter = circle.get_perimeter()
+print(area)
+print(perimeter)
+
+# Задача № 6
+prices = {'Strawberries' : 1.5, 'Banana' : 0.5, 'Mango' : 2.5,
+		'Blueberries' : 1, 'Raspberries' : 1, 'Apple' : 1.75,
+		'Pineapple' : 3.5}
+
+class Beverage:
+
+    def __init__(self, ingredients):
+        self.ingredients = ingredients
+        self.prices = prices
+
+    def get_cost(self):
+        return '$' + str(format(sum(self.prices[v] for v in self.ingredients), '.2f'))
+    
+    def get_price(self):
+        return '$' + str(format(float(self.get_cost()[1:]) * 2.5, '.2f'))
+    
+    def get_name(self):
+        sorted_ingredients = sorted([v.replace('berries', 'berry') for v in self.ingredients])
+        sorted_ingredients.append('Fusion') if len(sorted_ingredients) > 1 else sorted_ingredients.append('Smoothie')
+        return ' '.join(sorted_ingredients)
+
+s1 = Beverage(['Mango', 'Banana', 'Strawberries'])
+print(s1.get_cost())
+print(s1.get_price())
+print(s1.get_name())
